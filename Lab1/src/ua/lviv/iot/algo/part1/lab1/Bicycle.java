@@ -18,26 +18,26 @@ public class Bicycle {
         return instance;
     }
 
-    public void accelerate(int speed){
+    public void accelerate(int speed) {
         currentSpeed = Math.min(maxSpeed, currentSpeed + speed);
     }
 
-    public void brake(){
+    public void brake() {
         currentSpeed = 0;
     }
 
-    public void slowDown(double speed){
+    public void slowDown(double speed) {
         currentSpeed = currentSpeed - speed >= 0 ? currentSpeed - speed : 0;
     }
+
     public static void main(String[] args) {
-        var bicycles = new Bicycle[]{ new Bicycle(),
+        var bicycles = new Bicycle[]{new Bicycle(),
                 new Bicycle("гірський", "Deo Lanos", 123, 12),
                 Bicycle.getInstance(),
                 Bicycle.getInstance()};
 
-        for (Bicycle bicycle : bicycles)
-        {
-            System.out.println(bicycle.hashCode() + "\n");
+        for (Bicycle bicycle : bicycles) {
+            System.out.println(bicycle);
         }
     }
 }
