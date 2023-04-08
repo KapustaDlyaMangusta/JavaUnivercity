@@ -2,20 +2,25 @@ package ua.lviv.iot.algo.part1.lab1;
 
 import lombok.*;
 
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @ToString
-public class Bicycle {
+public class Bicycle extends AbstractBicycle {
     private String type;
     private String brand;
-    private double maxSpeed;
-    private double currentSpeed;
-    private static Bicycle instance = new Bicycle();
 
-    public static Bicycle getInstance() {
-        return instance;
+    public Bicycle(String type, String brand, double maxSpeed, double currentSpeed) {
+        super(maxSpeed, currentSpeed);
+
+        this.type = type;
+        this.brand = brand;
+    }
+
+    @Override
+    public int getMaxDistance() {
+        return Integer.MAX_VALUE;
     }
 
     public void accelerate(int speed) {
@@ -28,16 +33,5 @@ public class Bicycle {
 
     public void slowDown(double speed) {
         currentSpeed = currentSpeed - speed >= 0 ? currentSpeed - speed : 0;
-    }
-
-    public static void main(String[] args) {
-        var bicycles = new Bicycle[]{new Bicycle(),
-                new Bicycle("гірський", "Deo Lanos", 123, 12),
-                Bicycle.getInstance(),
-                Bicycle.getInstance()};
-
-        for (Bicycle bicycle : bicycles) {
-            System.out.println(bicycle);
-        }
     }
 }
