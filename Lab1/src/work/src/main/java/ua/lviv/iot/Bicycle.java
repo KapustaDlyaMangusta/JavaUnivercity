@@ -1,17 +1,20 @@
 package work.src.main.java.ua.lviv.iot;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Setter
-@ToString
 public class Bicycle extends AbstractBicycle {
     private String type;
     private String brand;
 
-    public Bicycle(String type, String brand, double maxSpeed, double currentSpeed) {
+    public Bicycle(final String type,
+                   final String brand,
+                   final double maxSpeed,
+                   final double currentSpeed) {
         super(maxSpeed, currentSpeed);
 
         this.type = type;
@@ -19,19 +22,22 @@ public class Bicycle extends AbstractBicycle {
     }
 
     @Override
-    public int getMaxDistance() {
+    public final int getMaxDistance() {
         return Integer.MAX_VALUE;
     }
 
-    public void accelerate(int speed) {
-        currentSpeed = Math.min(maxSpeed, currentSpeed + speed);
+    public final void accelerate(final int speed) {
+        setCurrentSpeed(Math.min(getMaxSpeed(),
+                getCurrentSpeed() + speed));
     }
 
-    public void brake() {
-        currentSpeed = 0;
+    public final void brake() {
+        setCurrentSpeed(0);
     }
 
-    public void slowDown(double speed) {
-        currentSpeed = currentSpeed - speed >= 0 ? currentSpeed - speed : 0;
+    public final void slowDown(final double speed) {
+        setCurrentSpeed(getCurrentSpeed() - speed >= 0
+                ? getCurrentSpeed() - speed
+                : 0);
     }
 }

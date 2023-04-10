@@ -1,17 +1,20 @@
 package work.src.main.java.ua.lviv.iot;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
-@ToString
 public class ElectroBicycle extends AbstractBicycle {
-    public int batteryCapacity;
-    public int chargePer100m;
+    private int batteryCapacity;
+    @Setter
+    private int chargePer100m;
 
-    public ElectroBicycle(int batteryCapacity, int chargePer100m, double maxSpeed, double currentSpeed) {
+    public ElectroBicycle(final int batteryCapacity,
+                          final int chargePer100m,
+                          final double maxSpeed,
+                          final double currentSpeed) {
         super(maxSpeed, currentSpeed);
 
         this.batteryCapacity = batteryCapacity;
@@ -19,7 +22,7 @@ public class ElectroBicycle extends AbstractBicycle {
     }
 
     @Override
-    public int getMaxDistance() {
-        return Integer.MAX_VALUE / chargePer100m;
+    public final int getMaxDistance() {
+        return batteryCapacity / chargePer100m;
     }
 }

@@ -1,35 +1,36 @@
 package work.src.main.java.ua.lviv.iot;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-@Getter
 @AllArgsConstructor
 public abstract class AbstractBicycle {
-    private static int ID;
+    private static int globalId;
 
     public AbstractBicycle() {
         setId();
     }
 
-    public AbstractBicycle(double maxSpeed, double currentSpeed){
+    public AbstractBicycle(final double maxSpeed, final double currentSpeed) {
         setId();
 
         this.maxSpeed = maxSpeed;
         this.currentSpeed = currentSpeed;
     }
-
-    public int id;
+    @Getter
+    private int id;
+    @Getter
     @Setter
-    public double maxSpeed;
+    private double maxSpeed;
+    @Getter
     @Setter
-    public double currentSpeed;
+    private double currentSpeed;
 
-    public int getMaxDistance() {
-        return 0;
-    }
+    public abstract int getMaxDistance();
 
-    private void setId(){
-        ++ID;
-        id = ID;
+    private void setId() {
+        ++globalId;
+        id = globalId;
     }
 }

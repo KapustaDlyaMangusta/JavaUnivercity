@@ -1,16 +1,22 @@
 package work.src.main.java.ua.lviv.iot;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @NoArgsConstructor
-@Getter
-@Setter
-@ToString
-public class KidBicycle extends AbstractBicycle{
-    public int recommendedAge;
-    public int wheelsCount;
+public class KidBicycle extends AbstractBicycle {
+    private static final int DISTANCE_COEFFICIENT = 10;
+    private static final int DIVIDING_AGE_COEFFICIENT = 3;
+    @Getter
+    @Setter
+    private int recommendedAge;
+    private int wheelsCount;
 
-    public KidBicycle(int recommendedAge, int wheelsCount, double maxSpeed, double currentSpeed) {
+    public KidBicycle(final int recommendedAge,
+                      final int wheelsCount,
+                      final double maxSpeed,
+                      final double currentSpeed) {
         super(maxSpeed, currentSpeed);
 
         this.recommendedAge = recommendedAge;
@@ -18,7 +24,7 @@ public class KidBicycle extends AbstractBicycle{
     }
 
     @Override
-    public int getMaxDistance() {
-        return recommendedAge % 3 * 10;
+    public final int getMaxDistance() {
+        return recommendedAge % DIVIDING_AGE_COEFFICIENT * DISTANCE_COEFFICIENT;
     }
 }
