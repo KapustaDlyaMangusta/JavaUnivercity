@@ -40,4 +40,8 @@ public class Bicycle extends AbstractBicycle {
                 ? getCurrentSpeed() - speed
                 : 0);
     }
+
+    public String toCSV() {
+        return super.toCSV() + type + "," + brand;
+    }
 }

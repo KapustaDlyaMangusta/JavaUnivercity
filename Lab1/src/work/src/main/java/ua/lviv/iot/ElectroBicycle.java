@@ -25,4 +25,8 @@ public class ElectroBicycle extends AbstractBicycle {
     public final int getMaxDistance() {
         return batteryCapacity / chargePer100m;
     }
+
+    public String toCSV() {
+        return super.toCSV() + String.format("%d,%d", batteryCapacity, chargePer100m);
+    }
 }

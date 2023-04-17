@@ -27,4 +27,8 @@ public class KidBicycle extends AbstractBicycle {
     public final int getMaxDistance() {
         return recommendedAge % DIVIDING_AGE_COEFFICIENT * DISTANCE_COEFFICIENT;
     }
+
+    public String toCSV() {
+        return super.toCSV() + String.format("%d,%d", recommendedAge, wheelsCount);
+    }
 }
