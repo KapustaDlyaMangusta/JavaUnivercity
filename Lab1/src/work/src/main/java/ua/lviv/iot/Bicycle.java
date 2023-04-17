@@ -41,7 +41,11 @@ public class Bicycle extends AbstractBicycle {
                 : 0);
     }
 
+    public String getHeaders() {
+        return super.getHeaders() + ", type, brand";
+    }
+
     public String toCSV() {
-        return super.toCSV() + type + "," + brand;
+        return super.toCSV() + ", " + type + ", " + brand;
     }
 }

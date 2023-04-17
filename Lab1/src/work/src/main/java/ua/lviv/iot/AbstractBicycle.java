@@ -34,16 +34,11 @@ public abstract class AbstractBicycle {
     public abstract int getMaxDistance();
 
     public String getHeaders() {
-        var fields = Arrays.stream(this
-                        .getClass()
-                        .getDeclaredFields())
-                .map(Field::getName).toList();
-
-        return String.join(",", fields);
+        return "id, maxSpeed, currentSpeed";
     }
 
     public String toCSV() {
-        return String.format("%d,%f,%f", id, maxSpeed, currentSpeed);
+        return id + ", " + maxSpeed + ", " + currentSpeed;
     }
 
     private void setId() {

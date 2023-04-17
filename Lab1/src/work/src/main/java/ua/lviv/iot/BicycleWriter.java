@@ -1,29 +1,28 @@
 package work.src.main.java.ua.lviv.iot;
 
-import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.*;
 
 public class BicycleWriter {
-    public void writeToFile(List<Bicycle> bicycles, String filename){
-        Map<Class<?>, List<Bicycle>> grouped = bicycles.stream()
-                .collect(Collectors.groupingBy(Object::getClass));
+    public void writeToFile(List<AbstractBicycle> bicycles, String filename) {
+        List<Class<AbstractBicycle>> bicycleHeaders = new ArrayList<>();
 
-        grouped.
+        bicycles.sort(Comparator.comparing(o -> o.getClass().getName()));
 
-        try (var writer = new FileWriter(filename)) {
-            for (String[] record : bicycles) {
-                String line = String.join(",", record);
-                writer.write(line);
-                writer.newLine();
+        try (FileWriter writer = new FileWriter(filename)) {
+            for (var bicycle : bicycles) {
+                var bicycleClass = bicycle.getClass();
+
+                if (!bicycleHeaders.stream().anyMatch(h -> Objects.equals(h, bicycleClass))) {
+                    writer.write(bicycle.getHeaders() + "\n");
+                    bicycleHeaders.add((Class<AbstractBicycle>) bicycleClass);
+                }
+
+                writer.write(bicycle.toCSV() + "\n");
             }
-            System.out.println("Data written to " + filename);
-        } catch (IOException e) {
-            System.err.println("Error writing to " + filename + ": " + e.getMessage());
+        } catch (
+                IOException ignored) {
         }
-
     }
 }

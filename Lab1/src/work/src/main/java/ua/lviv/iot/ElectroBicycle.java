@@ -26,7 +26,11 @@ public class ElectroBicycle extends AbstractBicycle {
         return batteryCapacity / chargePer100m;
     }
 
+    public String getHeaders() {
+        return super.getHeaders() + ", batteryCapacity, chargePer100m";
+    }
+
     public String toCSV() {
-        return super.toCSV() + String.format("%d,%d", batteryCapacity, chargePer100m);
+        return super.toCSV() + ", " + batteryCapacity + ", " + chargePer100m;
     }
 }

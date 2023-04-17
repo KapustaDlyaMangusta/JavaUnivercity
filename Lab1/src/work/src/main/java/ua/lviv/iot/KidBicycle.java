@@ -28,7 +28,11 @@ public class KidBicycle extends AbstractBicycle {
         return recommendedAge % DIVIDING_AGE_COEFFICIENT * DISTANCE_COEFFICIENT;
     }
 
+    public String getHeaders() {
+        return super.getHeaders() + ", recommendedAge, wheelsCount";
+    }
+
     public String toCSV() {
-        return super.toCSV() + String.format("%d,%d", recommendedAge, wheelsCount);
+        return super.toCSV() + ", " + recommendedAge + ", " + wheelsCount;
     }
 }
