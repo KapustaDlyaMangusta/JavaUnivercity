@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.lang.reflect.Field;
+import java.util.Arrays;
+
 @AllArgsConstructor
 public abstract class AbstractBicycle {
     private static int globalId;
@@ -18,6 +21,7 @@ public abstract class AbstractBicycle {
         this.maxSpeed = maxSpeed;
         this.currentSpeed = currentSpeed;
     }
+
     @Getter
     private int id;
     @Getter
@@ -28,6 +32,14 @@ public abstract class AbstractBicycle {
     private double currentSpeed;
 
     public abstract int getMaxDistance();
+
+    public String getHeaders() {
+        return "id, maxSpeed, currentSpeed";
+    }
+
+    public String toCSV() {
+        return id + ", " + maxSpeed + ", " + currentSpeed;
+    }
 
     private void setId() {
         ++globalId;

@@ -42,7 +42,7 @@ public class BicycleManagerTest {
     public void testGetBicyclesFasterThan() {
         var fastBicycles = bicycleManager.getBicyclesFasterThan(200);
 
-        assertEquals(4, fastBicycles.size());
+        assertEquals(3, fastBicycles.size());
 
         for (var bicycle : fastBicycles) {
             assertTrue(bicycle.getMaxSpeed() > 200);

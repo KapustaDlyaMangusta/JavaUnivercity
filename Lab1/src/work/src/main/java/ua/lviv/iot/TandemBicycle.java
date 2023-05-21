@@ -22,4 +22,12 @@ public class TandemBicycle extends AbstractBicycle {
     public final int getMaxDistance() {
         return (int) maxPassengersWeight * DISTANCE_COEFFICIENT;
     }
+
+    public String getHeaders() {
+        return super.getHeaders() + ", maxPassengersWeight";
+    }
+
+    public String toCSV() {
+        return super.toCSV() + ", " + maxPassengersWeight;
+    }
 }
